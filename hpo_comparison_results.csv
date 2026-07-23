@@ -1,3 +1,0 @@
-,R2,RMSE,MAE,Time,Best_Params
-Baseline,0.8074761021081012,28.01487448303384,16.114847594737657,8.085776805877686,Default
-Bayesian Optimization (Optuna),0.8129928970281227,27.61057233994001,16.83161653802198,192.02276825904846,"{'n_estimators': 281, 'max_depth': 12, 'min_samples_split': 9, 'min_samples_leaf': 2}"
