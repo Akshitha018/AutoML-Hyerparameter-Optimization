@@ -15,11 +15,12 @@ Dataset source: Kaggle - Bengaluru House Price Data
 Tech Stack:
 
 1. Python 3.x - Core Language
-2. Google Colab / Jupyter Notebook - Development environment
+2. Visual Studio Code - Development environment
 3. pandas, NumPyData - loading & preprocessing
 4. scikit-learn - Baseline model, Grid Search, Random Search
 5. Optuna - Bayesian Optimization
 6. matplotlib, seaborn - Visualization
+7. Streamlit - Working prototype / web application interface
 
 
 Future Scope:
