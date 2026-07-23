@@ -29,13 +29,12 @@ st.write("A working prototype built on top of an AutoML / Hyperparameter-Optimiz
 # =====================================================================
 # LOAD MODEL AND COLUMN REFERENCE
 # =====================================================================
-import os
-import pickle
-import streamlit as st
 
-@st.cache_resource
 def load_model():
-     st.write("Current folder:", os.getcwd())
+    import os
+    import pickle
+
+    st.write("Current folder:", os.getcwd())
     st.write("Files:", os.listdir("."))
 
     with open("best_model.pkl", "rb") as f:
@@ -48,20 +47,23 @@ def load_model():
         first10 = f.read(10)
         st.write("model_columns first bytes:", first10)
         f.seek(0)
-        columns = pickle.load(f)
 
-    return model, columns
+        try:
+            columns = pickle.load(f)
+        except Exception as e:
+            st.error(f"Error loading model_columns.pkl: {e}")
+            raise
+
+    return model, columns 
         
 try:
     model, model_columns = load_model()
     model_loaded = True
-except FileNotFoundError:
-    model_loaded = False
-    st.error(
-        "Model files not found. Please run save_model.py in your Colab notebook "
-        "first, then place 'best_model.pkl' and 'model_columns.pkl' in this folder."
-    )
 
+except Exception as e:
+    model_loaded = False
+    st.error(f"Error loading model: {e}")
+    st.exception(e)
 # =====================================================================
 # USER INPUT FORM
 # =====================================================================
