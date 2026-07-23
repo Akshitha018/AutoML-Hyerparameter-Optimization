@@ -35,24 +35,23 @@ import streamlit as st
 
 @st.cache_resource
 def load_model():
-     st.write("Current directory:", os.getcwd())
+     st.write("Current folder:", os.getcwd())
     st.write("Files:", os.listdir("."))
 
-    # Check best_model.pkl
     with open("best_model.pkl", "rb") as f:
-        first_bytes = f.read(10)
-        st.write("best_model.pkl first bytes:", first_bytes)
+        first10 = f.read(10)
+        st.write("best_model first bytes:", first10)
         f.seek(0)
         model = pickle.load(f)
 
-    # Check model_columns.pkl
     with open("model_columns.pkl", "rb") as f:
-        first_bytes = f.read(10)
-        st.write("model_columns.pkl first bytes:", first_bytes)
+        first10 = f.read(10)
+        st.write("model_columns first bytes:", first10)
         f.seek(0)
         columns = pickle.load(f)
 
     return model, columns
+        
 try:
     model, model_columns = load_model()
     model_loaded = True
